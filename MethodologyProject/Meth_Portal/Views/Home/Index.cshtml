@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Meth_Data.Database.StudentCours>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Student Dashboard";
+}
+
+<div class="panel-header panel-header-lg">
+    <canvas id="bigDashboardChart"></canvas>
+</div>
+<div class="content"  style="padding-left:30px">
+    <div class="col-md-12">
+        <div class="card">
+
+            <div class="card-content table-responsive table-full-width">
+                <table class="table">
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Course.CourseName)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearDegree.MidtermDegree)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearDegree.LectureDegree)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearDegree.SectionDegree)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearDegree.Total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FinalDegree)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.YearDegree.MidtermDegree)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.YearDegree.LectureDegree)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.YearDegree.SectionDegree)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.YearDegree.Total)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FinalDegree)
+                            </td>
+
+                            <td>
+                                @*@Html.ActionLink("Edit", "EditCourse", new { id=item.ID }) |
+                                *@ @Html.ActionLink("Details", "DetailsCourse", new { id = item.ID }) |
+                                @* @Html.ActionLink("Delete", "DeleteCourse", new { id=item.ID })*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+    <div id="hours">
+
+        <label style="Color:red">Total Registered Hours </label>
+        <p style="Color:blue">@ViewBag.hours</p>
+    </div>
+
+
+
+    <div id="Gpa">
+
+        <label style="Color:red">Total Gpa </label>
+        <p style="Color:blue">@ViewBag.Gpa</p>
+    </div>
+</div>
+<script src=@Url.Content("~/Content/assets/demo/demo.js")></script>
+<script src=@Url.Content("~/Content/assets/js/core/jquery.min.js")></script>
+
+<script>
+    $(document).ready(function () {
+        demo.initDashboardPageCharts();
+
+    });
+</script>

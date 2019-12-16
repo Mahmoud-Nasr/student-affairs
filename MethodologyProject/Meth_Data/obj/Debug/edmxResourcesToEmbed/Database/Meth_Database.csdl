@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MethProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MethProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetUsers" EntityType="MethProjectModel.AspNetUser" />
+    <EntitySet Name="Courses" EntityType="MethProjectModel.Course" />
+    <EntitySet Name="DoctorInfoes" EntityType="MethProjectModel.DoctorInfo" />
+    <EntitySet Name="Events" EntityType="MethProjectModel.Event" />
+    <EntitySet Name="StudentCourses" EntityType="MethProjectModel.StudentCours" />
+    <EntitySet Name="StudentInfoes" EntityType="MethProjectModel.StudentInfo" />
+    <EntitySet Name="YearDegrees" EntityType="MethProjectModel.YearDegree" />
+    <AssociationSet Name="FK_COURSE_Degrees" Association="MethProjectModel.FK_COURSE_Degrees">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="StudentCours" EntitySet="StudentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOC_COURSE" Association="MethProjectModel.FK_DOC_COURSE">
+      <End Role="DoctorInfo" EntitySet="DoctorInfoes" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COURSE_YEAR_Degrees" Association="MethProjectModel.FK_COURSE_YEAR_Degrees">
+      <End Role="YearDegree" EntitySet="YearDegrees" />
+      <End Role="StudentCours" EntitySet="StudentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDEBT_COURSE_DEGREES" Association="MethProjectModel.FK_STUDEBT_COURSE_DEGREES">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="StudentCours" EntitySet="StudentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASP_DOCTOR" Association="MethProjectModel.FK_ASP_DOCTOR">
+      <End Role="DoctorInfo" EntitySet="DoctorInfoes" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASP_STUDENT" Association="MethProjectModel.FK_ASP_STUDENT">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="AspNetRoles" EntityType="MethProjectModel.AspNetRole" />
+    <AssociationSet Name="AspNetUserRoles1" Association="MethProjectModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUserClaims" EntityType="MethProjectModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="MethProjectModel.AspNetUserLogin" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="MethProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="MethProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ProfilePic" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="DoctorID" Type="Int32" />
+    <NavigationProperty Name="DoctorInfo" Relationship="MethProjectModel.FK_ASP_DOCTOR" FromRole="AspNetUser" ToRole="DoctorInfo" />
+    <NavigationProperty Name="StudentInfo" Relationship="MethProjectModel.FK_ASP_STUDENT" FromRole="AspNetUser" ToRole="StudentInfo" />
+    <NavigationProperty Name="AspNetRoles" Relationship="MethProjectModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="MethProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="MethProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CourseLevels" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CourseDays" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CourseTime" Type="DateTime" Precision="7" />
+    <Property Name="CourseHours" Type="Int32" Nullable="false" />
+    <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+    <Property Name="DoctorID" Type="Int32" />
+    <NavigationProperty Name="StudentCourses" Relationship="MethProjectModel.FK_COURSE_Degrees" FromRole="Course" ToRole="StudentCours" />
+    <NavigationProperty Name="DoctorInfo" Relationship="MethProjectModel.FK_DOC_COURSE" FromRole="Course" ToRole="DoctorInfo" />
+  </EntityType>
+  <EntityType Name="DoctorInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Degree" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Courses" Relationship="MethProjectModel.FK_DOC_COURSE" FromRole="DoctorInfo" ToRole="Course" />
+    <NavigationProperty Name="AspNetUsers" Relationship="MethProjectModel.FK_ASP_DOCTOR" FromRole="DoctorInfo" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventPic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StartingDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="EndingDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Days" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentCours">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="YearDegreeID" Type="Int32" Nullable="false" />
+    <Property Name="FinalDegree" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Course" Relationship="MethProjectModel.FK_COURSE_Degrees" FromRole="StudentCours" ToRole="Course" />
+    <NavigationProperty Name="YearDegree" Relationship="MethProjectModel.FK_COURSE_YEAR_Degrees" FromRole="StudentCours" ToRole="YearDegree" />
+    <NavigationProperty Name="StudentInfo" Relationship="MethProjectModel.FK_STUDEBT_COURSE_DEGREES" FromRole="StudentCours" ToRole="StudentInfo" />
+    <Property Name="IsFinished" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StudentCourses" Relationship="MethProjectModel.FK_STUDEBT_COURSE_DEGREES" FromRole="StudentInfo" ToRole="StudentCours" />
+    <NavigationProperty Name="AspNetUsers" Relationship="MethProjectModel.FK_ASP_STUDENT" FromRole="StudentInfo" ToRole="AspNetUser" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YearDegree">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MidtermDegree" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LectureDegree" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SectionDegree" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Total" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StudentCourses" Relationship="MethProjectModel.FK_COURSE_YEAR_Degrees" FromRole="YearDegree" ToRole="StudentCours" />
+  </EntityType>
+  <Association Name="FK_COURSE_Degrees">
+    <End Type="MethProjectModel.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="MethProjectModel.StudentCours" Role="StudentCours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentCours">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOC_COURSE">
+    <End Type="MethProjectModel.DoctorInfo" Role="DoctorInfo" Multiplicity="0..1" />
+    <End Type="MethProjectModel.Course" Role="Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DoctorInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COURSE_YEAR_Degrees">
+    <End Type="MethProjectModel.YearDegree" Role="YearDegree" Multiplicity="1" />
+    <End Type="MethProjectModel.StudentCours" Role="StudentCours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YearDegree">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentCours">
+        <PropertyRef Name="YearDegreeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDEBT_COURSE_DEGREES">
+    <End Type="MethProjectModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+    <End Type="MethProjectModel.StudentCours" Role="StudentCours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentCours">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASP_DOCTOR">
+    <End Type="MethProjectModel.DoctorInfo" Role="DoctorInfo" Multiplicity="0..1" />
+    <End Type="MethProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DoctorInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASP_STUDENT">
+    <End Type="MethProjectModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+    <End Type="MethProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="MethProjectModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="AspNetUserRoles">
+    <End Type="MethProjectModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="MethProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="MethProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="MethProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="MethProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MethProjectModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="MethProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MethProjectModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

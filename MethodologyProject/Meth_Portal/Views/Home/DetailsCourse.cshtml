@@ -1,0 +1,47 @@
+﻿@model Meth_Data.Database.StudentCours
+
+@{
+    ViewBag.Title = "DetailsCourse";
+}
+<div style="padding:50px">
+
+    <div>
+        <h4>Course details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseDays)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseDays)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseHours)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseHours)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.CourseTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.CourseTime)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to DashBoard", "Index")
+    </p>
+</div>

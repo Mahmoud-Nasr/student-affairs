@@ -1,0 +1,172 @@
+﻿@model IEnumerable<Meth_Data.Database.StudentCours>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    ViewBag.Title = "Index";
+    Scripts.Render("~/bundles/jquery");
+
+}
+
+<h2>Search Dashboard</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "RegisteCourse")
+    </p>*@
+<div class="col-md-12">
+    <div class="card">
+       
+        <div class="card-content table-responsive table-full-width">
+            <table class="table">
+
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Course.CourseName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.YearDegree.MidtermDegree)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.YearDegree.LectureDegree)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.YearDegree.SectionDegree)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.YearDegree.Total)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FinalDegree)
+                    </th>
+
+                    <th></th>
+                </tr>
+                @*<thead>
+            <th data-field="state" data-checkbox="true"></th>
+            <th data-field="id" class="text-center">ID</th>
+            <th data-field="name" data-sortable="true">Name</th>
+            <th data-field="salary" data-sortable="true">Salary</th>
+            <th data-field="country" data-sortable="true">Country</th>
+            <th data-field="city">City</th>
+            <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
+            </thead>*@
+                @foreach (var item in Model)
+            {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearDegree.MidtermDegree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearDegree.LectureDegree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearDegree.SectionDegree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearDegree.Total)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FinalDegree)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "EditCourse", new { id = item.ID }) |
+                            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                            @Html.ActionLink("Delete", "DeleteCourse", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div><!--  end card  -->
+</div> <!-- end col-md-12 -->
+           
+
+
+<script type="text/javascript">
+
+    var $table = $('#bootstrap_table');
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<div class="table-icons">',
+                '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
+                    '<i class="ti-image"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
+                    '<i class="ti-pencil-alt"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+                    '<i class="ti-close"></i>',
+                '</a>',
+            '</div>',
+        ].join('');
+    }
+
+    $().ready(function () {
+        window.operateEvents = {
+            'click .view': function (e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click view icon, row: ', info);
+                console.log(info);
+            },
+            'click .edit': function (e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click edit icon, row: ', info);
+                console.log(info);
+            },
+            'click .remove': function (e, value, row, index) {
+                console.log(row);
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+            }
+        };
+
+        $table.bootstrapTable({
+            toolbar: ".toolbar",
+            clickToSelect: true,
+            showRefresh: true,
+            search: true,
+            showToggle: true,
+            showColumns: true,
+            pagination: true,
+            searchAlign: 'left',
+            pageSize: 8,
+            clickToSelect: false,
+            pageList: [8, 10, 25, 50, 100],
+
+            formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                //do nothing here, we don't want to show the text "showing x of y from..."
+            },
+            formatRecordsPerPage: function (pageNumber) {
+                return pageNumber + " rows visible";
+            },
+            icons: {
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-th-list',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus-circle',
+                detailClose: 'ti-close'
+            }
+        });
+
+        //activate the tooltips after the data table is initialized
+        $('[rel="tooltip"]').tooltip();
+
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView');
+        });
+    });
+
+</script>

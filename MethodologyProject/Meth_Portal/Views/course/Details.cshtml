@@ -1,0 +1,77 @@
+﻿@model Meth_Data.Database.Course
+@{ Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseLevels)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseLevels)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOpen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorInfo.Degree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorInfo.Degree)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

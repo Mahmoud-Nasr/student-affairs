@@ -1,0 +1,10 @@
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\Meth_Data.dll.config
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\Meth_Data.dll
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\Meth_Data.pdb
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\EntityFramework.dll
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\EntityFramework.xml
+D:\meth project\MethodologyProject\Meth_Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\meth project\MethodologyProject\Meth_Data\obj\Debug\Meth_Data.dll
+D:\meth project\MethodologyProject\Meth_Data\obj\Debug\Meth_Data.pdb
+D:\meth project\MethodologyProject\Meth_Data\obj\Debug\Meth_Data.csprojResolveAssemblyReference.cache

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5483798a5df9475187733f842a8d18ea" Name="Diagram1" >
+        <EntityTypeShape EntityType="MethProjectModel.AspNetUser" Width="1.5" PointX="7.5" PointY="4.625" />
+        <EntityTypeShape EntityType="MethProjectModel.Course" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="MethProjectModel.DoctorInfo" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="MethProjectModel.Event" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MethProjectModel.StudentCours" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="MethProjectModel.StudentInfo" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="MethProjectModel.YearDegree" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="MethProjectModel.FK_COURSE_Degrees" />
+        <AssociationConnector Association="MethProjectModel.FK_DOC_COURSE" />
+        <AssociationConnector Association="MethProjectModel.FK_COURSE_YEAR_Degrees" />
+        <AssociationConnector Association="MethProjectModel.FK_STUDEBT_COURSE_DEGREES" />
+        <AssociationConnector Association="MethProjectModel.FK_ASP_DOCTOR" />
+        <AssociationConnector Association="MethProjectModel.FK_ASP_STUDENT" />
+        <EntityTypeShape EntityType="MethProjectModel.AspNetRole" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="MethProjectModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="MethProjectModel.AspNetUserClaim" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MethProjectModel.AspNetUserLogin" Width="1.5" PointX="9.75" PointY="7.5" />
+        <AssociationConnector Association="MethProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MethProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

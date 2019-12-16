@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Meth_Data.Database.StudentCours>
+
+@{
+    ViewBag.Title = "UploadFileCsv";
+}
+<div style="padding:50px ">
+    <h4>Select File .Csv</h4>
+
+    @using (Html.BeginForm("UploadFileCsv", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="postedFile" />
+        <input type="submit" value="Import" />
+    }
+    @if (Model.Count() > 0)
+    {
+
+        <hr />
+        <div class="col-md-12">
+            <div class="card">
+
+                <div class="card-content table-responsive table-full-width">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StudentID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StudentInfo.AspNetUsers.First().UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.YearDegree.MidtermDegree)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.YearDegree.SectionDegree)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.YearDegree.LectureDegree)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.YearDegree.Total)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (Meth_Data.Database.StudentCours item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(items => item.StudentID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(items => item.StudentInfo.AspNetUsers.First().UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(items => item.YearDegree.MidtermDegree)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(items => item.YearDegree.SectionDegree)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(items => item.YearDegree.LectureDegree)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(items => item.YearDegree.Total)
+                                </td>
+                                @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                    </td>*@
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+                </div>

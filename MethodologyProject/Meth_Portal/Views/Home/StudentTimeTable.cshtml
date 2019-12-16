@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Meth_Data.Database.StudentCours>
+
+@{
+    ViewBag.Title = "StudentTimeTable";
+}
+
+<h2>StudentTimeTable</h2>
+<div class="col-md-12" style="padding:30px">
+    <div class="card">
+
+        <div class="card-content table-responsive table-full-width">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Saturday")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Sunday")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Monday")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Tuesday")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Wednesday")
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("Thursday")
+                    </th>
+
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.Course.CourseDays.Equals("Saturday"))
+                            {            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Course.CourseDays.Equals("Sunday"))
+                            {            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Course.CourseDays.Equals("Monday"))
+                            {            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Course.CourseDays.Equals("Tuesday"))
+                            {            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Course.CourseDays.Equals("Wednesday"))
+                            {            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Course.CourseDays.Equals("Thursday"))
+                            {            @Html.DisplayFor(modelItem => item.Course.CourseName)
+                            }
+                        </td>
+                        @*<td>
+                                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                            </td>*@
+                    </tr>
+                }
+
+            </table>
+</div>
+</div>
+</div>
